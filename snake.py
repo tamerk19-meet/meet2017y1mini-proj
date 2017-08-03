@@ -1,7 +1,22 @@
-wwimport turtle
+import turtle
 import random
 
 turtle.tracer(1,0)
+
+turtle.bgcolor('black')
+square=turtle.clone()
+square.shape('square')
+square.pensize(10)
+square.pencolor('white')
+square.penup()
+square.goto(-400,-250)
+square.pendown()
+square.goto(-400,250)
+square.goto(400,250)
+square.goto(400,-250)
+square.goto(-400,-250)
+square.hideturtle()
+
 
 SIZE_X = 800
 SIZE_Y = 500
@@ -33,6 +48,7 @@ food_pos = []
 food_stamps = []
 snake = turtle.clone()
 snake.shape("square")
+snake.color('red')
 
 turtle.hideturtle()
 
@@ -50,7 +66,7 @@ def make_food():
     min_x = -int(SIZE_X/2/SQUARE_SIZE)+1
     max_x = int(SIZE_X/2/SQUARE_SIZE)-1
     min_y = -int(SIZE_Y/2/SQUARE_SIZE)+1
-    max_y = int(SIZE_Y/2/SQUARE_SIZE)+1
+    max_y = int(SIZE_Y/2/SQUARE_SIZE)-1
 
     food_x = random.randint(min_x,max_x) *SQUARE_SIZE
     food_y = random.randint(min_y,max_y) *SQUARE_SIZE
@@ -59,6 +75,7 @@ def make_food():
     food_pos.append(k)
     xfoodx = food.stamp()
     food_stamps.append(xfoodx)
+    
 
 direction = UP
 UP_EDGE = 250
@@ -101,20 +118,22 @@ def move_snake():
     new_x_pos = new_pos[0]
     new_y_pos = new_pos[1]
 
-    if snake.pos() in pos_list[0:-1]:
-        quit()
+
     
     
  
     global food_stamps, food_pos
+    
     if snake.pos() in food_pos:
         food_ind = food_pos.index(snake.pos())
         food.clearstamp(food_stamps[food_ind])
         food_pos.pop(food_ind)
         food_stamps.pop(food_ind)
         make_food()
+        w=snake.stamp()
+        pos_list.append(w)
+        stamp_list.append(w)
         print('you have eaten the food')
-
 
     if new_y_pos >= UP_EDGE:
         print("you hit the upper edge... game over")
@@ -146,7 +165,8 @@ def move_snake():
         snake.goto(x_pos, y_pos + SQUARE_SIZE)
         print('you moved up!')
 
-
+    if snake.pos() in pos_list[0:-1]:
+        quit()
     my_pos = snake.pos()
     pos_list.append(my_pos)
     new_stamp = snake.stamp()
