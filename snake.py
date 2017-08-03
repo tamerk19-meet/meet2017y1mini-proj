@@ -31,13 +31,23 @@ def make_food():
     foodstamps1=food.stamp()
     food_stamps.append(foodstamps1)
 
-def snake_suicide() :
-    if pos_list=
-    
+
+
 def move_snake():
+
+    if snake.pos() in pos_list[0:-1]:
+        quit()
+
     my_pos=snake.pos()
     x_pos=my_pos[0]
     y_pos=my_pos[1]
+    
+    global food_stamps,food_pos
+    if snake.pos() in food_pos:
+        food_ind=food_pos.index(snake.pos())
+        food.clearstamp(food_stamps[food_ind])
+        
+    
     if direction==RIGHT:
         snake.goto(x_pos+SQUARE_SIZE,y_pos)
         print('you moved right!')
@@ -94,6 +104,18 @@ import turtle
 import random
 turtle.tracer(1,0)
 
+square.pensize
+square=turtle.clone()
+square.shape('square')
+square.penup()
+square.goto(-400,250)
+square.pendown()
+square.goto(400,250)
+square.goto(400,-250)
+square.goto(-400,-250)
+square.goto(-400,250)
+square.hideturtle()
+
 SIZE_X=800
 SIZE_Y=500
 turtle.setup(SIZE_X,SIZE_Y)
@@ -101,7 +123,7 @@ turtle.setup(SIZE_X,SIZE_Y)
 turtle.penup()
 
 SQUARE_SIZE=20
-START_LENGTH=7
+START_LENGTH=1
 
 pos_list=[]
 stamp_list=[]
@@ -153,6 +175,8 @@ turtle.register_shape('trash.gif')
 food=turtle.clone()
 food.shape('trash.gif')
 make_food()
+
+snake.color('red')
 
 move_snake()
 
