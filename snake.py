@@ -18,6 +18,8 @@ square.goto(-400,-250)
 square.hideturtle()
 
 
+
+
 SIZE_X = 800
 SIZE_Y = 500
 turtle.setup(SIZE_X+50, SIZE_Y+50)
@@ -132,6 +134,13 @@ def move_snake():
         pos_list.append(w)
         stamp_list.append(w)
         print('you have eaten the food')
+        score=turtle.clone()
+        score.hideturtle()
+        score.goto(400,250)
+        score.pencolor('red')
+        turtle.write('Score = 0')
+
+        score.write(str(stamp_list-START_LENGTH))
 
     if new_y_pos >= UP_EDGE:
         print("you hit the upper edge... game over")
@@ -181,9 +190,9 @@ turtle.onkeypress(left, LEFT_ARROW)
 turtle.onkeypress(right, RIGHT_ARROW)
 turtle.listen()
 
-turtle.register_shape("trash.gif")
+turtle.register_shape("poop.gif")
 food = turtle.clone()
-food.shape("trash.gif")
+food.shape("poop.gif")
 
 make_food()
 ##food_pos = [(100,100), (-100,100), (-100,-100), (100,-100)]
@@ -192,25 +201,3 @@ make_food()
 ##    food.goto(a)
 ##    food_stamp = food.stamp()
 ##    food_stamps.append(food_stamp)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
