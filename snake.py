@@ -7,7 +7,7 @@ turtle.bgcolor('black')
 square=turtle.clone()
 square.shape('square')
 square.pensize(10)
-square.pencolor('white')
+square.pencolor('red')
 square.penup()
 square.goto(-400,-250)
 square.pendown()
@@ -20,7 +20,7 @@ square.hideturtle()
 
 SIZE_X = 800
 SIZE_Y = 500
-turtle.setup(SIZE_X, SIZE_Y)
+turtle.setup(SIZE_X+50, SIZE_Y+50)
 
 turtle.penup()
 
@@ -46,9 +46,11 @@ pos_list = []
 stamp_list = []
 food_pos = []
 food_stamps = []
+turtle.register_shape("snake.gif")
 snake = turtle.clone()
-snake.shape("square")
-snake.color('red')
+snake.shape("snake.gif")
+
+
 
 turtle.hideturtle()
 
@@ -58,7 +60,7 @@ for i in range(START_LENGTH):
     x_pos += SQUARE_SIZE
     my_pos = (x_pos,y_pos)
     snake.goto(x_pos,y_pos)
-    pos_list.append(x_pos)
+    pos_list.append(my_pos)
     sstamp = snake.stamp()
     stamp_list.append(sstamp)
 
@@ -85,8 +87,6 @@ def up():
     #move_snake()
     print('You pressed the up key!')
     
-
-direction = DOWN
 DOWN_EDGE = -250
 def down():
     global direction
@@ -94,7 +94,6 @@ def down():
     #move_snake()
     print('You pressed the down key!')
 
-direction = LEFT
 LEFT_EDGE = -400
 def left():
     global direction
@@ -102,7 +101,6 @@ def left():
     #move_snake()
     print('You pressed the left key!')
 
-direction = RIGHT
 RIGHT_EDGE = 400
 def right():
     global direction
